@@ -276,5 +276,57 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2021-06-30  8:38:49
+INSERT INTO pasajero (id,nombre,documento,edad,email,telefono) VALUES
+('1','Eduardo Crosthwaite','10100123','60','jorgesalazar@gmail.com','321818732'),
+('2','Maria Pineda','41768023','51','jorgesalazar@gmail.com','3019084563'),
+('3','Geraldine Jaramillo','1095967409','21','gjaramillo@hotmail.com','312450945'),
+('4','Maria Cuellar','1095986731','19','mcuellarj@outlook.com','3109674532'),
+('5','Juan Rios','1095970907','32','jmrios@gmail.com','3112907687'),
+('6','Daniel Gomez','1093958745','28','danigomesp@hotmail.com','3017650989'),
+('7','Juan Jose Orozco','1093958730','35','jjorozco@hotmail.com','3225691'),
+('8','Viviana Rodriguez','1094967698','39','viviro@gmail.com','3217650989'),
+('9','Tatiana Salazar','1096978645','26','tsalazarp.uq@gmail.com','3017650989');
 
+INSERT INTO origen (id_origen,nombre_aeropuerto,nombre_ciudad) VALUES
+('1','Aeropuerto Internacional El Eden','Armenia'),
+('2','Aeropuerto Internacional Matecaña','Pereira'),
+('3','Aeropuerto Nacional La Nubia','Manizales'),
+('4','Aeropuerto Internacional Alfonso Bonilla Aragón','Cali');
 
+INSERT INTO destino (id_destino,nombre_aeropuerto,nombre_ciudad) VALUES
+('1','Aeropuerto Internacional El Eden','Armenia'),
+('2','Aeropuerto Internacional Matecaña','Pereira'),
+('3','Aeropuerto Nacional La Nubia','Manizales'),
+('4','Aeropuerto Internacional Alfonso Bonilla Aragón','Cali');
+
+INSERT INTO itinerario (id_itinerario,fecha_salida,fecha_llegada,destino_id_destino,origen_id_origen) VALUES
+(1,'2021-06-29 03:00:00','2021-06-29 05:00:00',4,1),
+(2,'2021-06-30 01:00:00','2021-06-30 03:00:00',3,4),
+(3,'2021-07-01 06:00:00','2021-07-01 07:00:00',3,1);
+
+INSERT INTO compania (id_compania, nombre_compania) VALUES
+('1','Avianca'),
+('2','Viva Air');
+
+INSERT INTO aeropuerto (id_aeropuerto , nombre_aeropuerto,numero_de_pistas,aeropuerto_activo,ciudad) VALUES
+('1','Aeropuerto Internacional El Eden','2', 'si','Armenia'),
+('2','Aeropuerto Internacional Matecaña','3','si','Pereira'),
+('3','Aeropuerto Nacional La Nubia','3','si','Manizales'),
+('4','Aeropuerto Internacional Alfonso Bonilla Aragón','3','si','Cali');
+
+INSERT INTO avion (id_avion , aeropuerto_id_aeropuerto,compania_id_compania, modelo, capacidad) VALUES
+('1','1','1','ATR-72',74),
+('2','1','2','Airbus A320',180),
+('3','2','1','ATR-72',74),
+('4','3','1','ATR-72',74),
+('5','4','1','ATR-72',74);
+
+INSERT INTO vuelo (id_vuelo,capacidad,numerovuelo,compania_id_compania,itinerario_id_itinerario,avion_id_avion) VALUES
+('1',74,'1',1,1,'1'),
+('2',74,'2',1,1,'1'),
+('3',180,'3',2,1,'1');
+
+INSERT INTO pasaje (id_pasaje,clase,asiento,valor,pasajero_id,vuelo_id_vuelo) VALUES
+('1','Económica','15',250000,'9','1'),
+('2','Económica','22',250000,'8','1'),
+('3','Económica','31',250000,'7','1');
