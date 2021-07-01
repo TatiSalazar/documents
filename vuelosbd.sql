@@ -3,7 +3,7 @@ use vuelobd;
 
 -- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
 --
--- Host: localhost    Database: vuelopruebadb
+-- Host: localhost    Database: vuelobd
 -- ------------------------------------------------------
 -- Server version	8.0.25
 
@@ -336,10 +336,24 @@ select * from pasaje;
 select * from pasaje WHERE id_pasaje >2;
 select * from pasajero where edad>30;
 select * from pasaje inner join vuelo on pasaje.vuelo_id_vuelo=id_pasaje inner join itinerario on id_vuelo=itinerario_id_itinerario inner join destino on id_itinerario=destino_id_destino ;
+ 
  -- capacidad del vuelo segun la fecha de salida
  select vuelo.capacidad from pasaje inner join vuelo on pasaje.vuelo_id_vuelo=id_pasaje inner join itinerario on id_vuelo=itinerario_id_itinerario where itinerario.fecha_salida='2021-06-29 03:00:00';
+ 
  -- id pasaje, id vuelo, id pasajero con destino armenia
  select pasaje.id_pasaje,vuelo.id_vuelo, pasaje.pasajero_id from pasaje inner join vuelo on pasaje.vuelo_id_vuelo=id_pasaje
-									inner join itinerario on id_vuelo=itinerario_id_itinerario 
-                                    inner join destino on id_itinerario=destino_id_destino
-                                    where destino.nombre_ciudad='Armenia';
+																		inner join itinerario on id_vuelo=itinerario_id_itinerario 
+																		inner join destino on id_itinerario=destino_id_destino
+																		where destino.nombre_ciudad='Armenia';
+                                                                        
+-- id avion, nombre aeropuerto de los aviones modelo ATR-72
+select avion.id_avion as Avion, aeropuerto.nombre_aeropuerto as Aeropuerto from avion inner join aeropuerto on avion.id_avion=aeropuerto.id_aeropuerto where avion.modelo='ATR-72';
+
+-- avion modelo capacidad compania de avianca 
+select avion.id_avion as Avion, avion.modelo as Modelo, avion.capacidad as Capacidad, compania.nombre_compania as compania from avion inner join compania where compania.nombre_compania='avianca';
+
+-- itinerario con la fecha salida despues de '2021-06-29 03:00:00'  
+select itinerario.id_itinerario as Itinerario, itinerario.fecha_salida as Fecha_Salida, itinerario.fecha_llegada as Fecha_Llegada,  
+																		  itinerario.destino_id_destino as Destino,  
+																		  itinerario.origen_id_origen as Destino 
+																		  from itinerario where itinerario.fecha_salida > '2021-06-29 03:00:00';
