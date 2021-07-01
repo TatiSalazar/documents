@@ -330,3 +330,16 @@ INSERT INTO pasaje (id_pasaje,clase,asiento,valor,pasajero_id,vuelo_id_vuelo) VA
 ('1','Económica','15',250000,'9','1'),
 ('2','Económica','22',250000,'8','1'),
 ('3','Económica','31',250000,'7','1');
+
+use vuelobd;
+select * from pasaje;
+select * from pasaje WHERE id_pasaje >2;
+select * from pasajero where edad>30;
+select * from pasaje inner join vuelo on pasaje.vuelo_id_vuelo=id_pasaje inner join itinerario on id_vuelo=itinerario_id_itinerario inner join destino on id_itinerario=destino_id_destino ;
+ -- capacidad del vuelo segun la fecha de salida
+ select vuelo.capacidad from pasaje inner join vuelo on pasaje.vuelo_id_vuelo=id_pasaje inner join itinerario on id_vuelo=itinerario_id_itinerario where itinerario.fecha_salida='2021-06-29 03:00:00';
+ -- id pasaje, id vuelo, id pasajero con destino armenia
+ select pasaje.id_pasaje,vuelo.id_vuelo, pasaje.pasajero_id from pasaje inner join vuelo on pasaje.vuelo_id_vuelo=id_pasaje
+									inner join itinerario on id_vuelo=itinerario_id_itinerario 
+                                    inner join destino on id_itinerario=destino_id_destino
+                                    where destino.nombre_ciudad='Armenia';
